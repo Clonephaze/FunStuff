@@ -1,5 +1,5 @@
 :root {
-    --root-size: 100px;
+    --root-size:  clamp (50px, 10vw, 100px);
     --rotateSpeed: 20s;
     --bounceSpeed: 2s;
 }
@@ -27,6 +27,8 @@ body{
 
 .scene {
     transform-style: preserve-3d;
+    max-width: 100vw;
+    max-height: 100lvh;
     position: relative;
     animation: rotateScene var(--rotateSpeed) linear infinite;
 }
