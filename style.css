@@ -122,9 +122,9 @@ body{
 }
 
 @keyframes cubeBounce {
-  0%, 100% { transform: scaleY(0.85) scaleX(1.15);}
-  13% { transform: scaleY(1.05) scaleX(0.9);}
-  25% { transform: scaleY(1) scaleX(1);}
-  30% { transform: scaleY(1.01) scaleX(0.98);}
-  95% { transform: scaleY(1);}
+  0%, 100% { transform: scale3d(1.15, 0.85, 1.15); }
+  13% { transform: scale3d(0.9, 1.05, 0.9); }
+  25% { transform: scale3d(1, 1, 1); }
+  30% { transform: scale3d(0.98, 1.01, 0.98); }
+  95% { transform: scale3d(1, 1, 1); }
 }
