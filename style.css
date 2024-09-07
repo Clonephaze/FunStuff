@@ -1,5 +1,5 @@
 :root {
-    --root-size:  clamp (50px, 10vw, 100px);
+    --root-size:  100px;
     --rotateSpeed: 20s;
     --bounceSpeed: 2s;
 }
