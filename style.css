@@ -27,7 +27,7 @@ body{
 
 .scene {
     transform-style: preserve-3d;
-    max-width: 100vw;
+    max-width: 90%;
     aspect-ratio: 16/9;
     position: relative;
     animation: rotateScene var(--rotateSpeed) linear infinite;
