@@ -122,6 +122,9 @@ body{
 }
 
 @keyframes cubeBounce {
-    0%, 100% { transform: scaleY(0.75) scaleX(1.15); }
-    5%, 95% { transform: scaleY(1); animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
+  0%, 100% { transform: scaleY(0.78) scaleX(1.15)}
+  13% { transform: scaleY(1.05) scaleX(0.9)}
+  25% { transform: scaleY(1) scaleX(1)}
+  30% { transform: scaleY(1.01) scaleX(0.98)}
+  95% { transform: scaleY(1)}
 }
