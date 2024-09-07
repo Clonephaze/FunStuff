@@ -1,5 +1,5 @@
 :root {
-    --root-size:  100px;
+    --root-size:  clamp(40px, 5vw, 80px);
     --rotateSpeed: 20s;
     --bounceSpeed: 2s;
 }
@@ -122,6 +122,6 @@ body{
 }
 
 @keyframes cubeBounce {
-    0%, 100% { transform: scaleY(0.75);}
+    0%, 100% { transform: scaleY(0.75) scaleX(1.15); }
     5%, 95% { transform: scaleY(1); animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
 }
