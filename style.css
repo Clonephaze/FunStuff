@@ -1,7 +1,7 @@
 :root {
-    --root-size:  clamp(40px, 5vw, 80px);
+    --root-size:  clamp(40px, 5vw, 60px);
     --rotateSpeed: 20s;
-    --bounceSpeed: 2s;
+    --bounceSpeed: 1.8s;
 }
 
 *,
@@ -20,14 +20,14 @@ body{
     overflow: hidden;
     justify-content: center;
     align-items: center;
-    perspective: calc(var(--root-size) * 15);
-    perspective-origin: 50% calc(50% - calc(var(--root-size) * 5));
+    perspective: calc(var(--root-size) * 30);
+    perspective-origin: 50% calc(50% - calc(var(--root-size) * 8));
     position: absolute;
 }
 
 .scene {
     transform-style: preserve-3d;
-    max-width: 90%;
+    /* max-width: 90vw; */
     aspect-ratio: 16/9;
     position: relative;
     animation: rotateScene var(--rotateSpeed) linear infinite;
@@ -40,9 +40,11 @@ body{
     position: absolute;
     top: calc(var(--root-size) * 2);
     transform: translate(-50%, -50%) rotateX(90deg);
-    background-image: radial-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0) 65%),
-    repeating-conic-gradient(from 45deg, rgba(104, 102, 102, 0.438) 0deg 90deg, rgba(22, 12, 12, 0.8) 90deg 180deg);
-    background-size: 100%, calc(var(--root-size) * 1.25) calc(var(--root-size) * 1.25);
+    background-image: radial-gradient( transparent, 40%, lch(0% 0 0) 65%),
+    repeating-conic-gradient(from 45deg, hsl(0 1 40) 0deg 90deg, hsla(0 30 7) 90deg 180deg);
+    --_tileSize: calc(var(--root-size) * 2.25);
+    background-size: 100%, var(--_tileSize) var(--_tileSize);
+    background-position: center;
 }
 
 .cube {
@@ -52,7 +54,7 @@ body{
     width: calc(var(--root-size) * 4);
     top: calc(var(--root-size) * -2.05);
     left: calc(var(--root-size) * -2);
-    animation: cubeBounce var(--bounceSpeed) cubic-bezier(0.5, 1, 0.89, 1) infinite;
+    animation: cubeBounce var(--bounceSpeed) cubic-bezier(0.5, 1, 0.89, 1) 0.08s infinite;
     transform-origin: bottom;
     
     > .front, > .right, > .back, > .left, > .top, > .bottom {
@@ -99,10 +101,31 @@ body{
     width: calc(var(--root-size) * 2);
     left: calc(var(--root-size) * -1);
     bottom: calc(var(--root-size) * 2);
-    background-color: rgb(255, 255, 255);
+    background-color: hsl(0, 0%, 37%);
     border-radius: 50%;
-    background-image: radial-gradient(circle at top, rgb(255, 255, 255), 50%, rgb(0, 0, 0));
+    background-image: radial-gradient(transparent 55%, hsla(0, 0%, 16%, 0.441) 85%);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     animation: ballBounce var(--bounceSpeed) cubic-bezier(0.5, 1, 0.89, 1) infinite, rotateScene var(--rotateSpeed) linear infinite reverse;
+    overflow: clip;
+
+    &::after, &::before {
+        content: '';
+        inset: 0;
+        position: absolute;
+    }
+
+    &::before {
+        background-image: radial-gradient(circle at top, rgb(255, 255, 255), 30%, transparent);
+        transform: scale(1.5, 0.8);
+        transform-origin: top;
+    }
+
+    &::after {
+        background: radial-gradient(circle at bottom, rgba(86, 26, 136, 0.693), 30%, transparent 50%);
+        animation: ballShadow var(--bounceSpeed) cubic-bezier(0.5, 1, 0.89, 1) infinite;
+    }
 }
 
 @keyframes rotateScene {
@@ -113,7 +136,7 @@ body{
 
 @keyframes ballBounce {
     0%, 100% { bottom: calc(var(--root-size) * 1.5); }
-    50% { bottom: calc(var(--root-size) * 5); animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
+    50% { bottom: calc(var(--root-size) * 8); animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0); }
 }
 
 @keyframes ballShadow {
@@ -123,7 +146,7 @@ body{
 
 @keyframes cubeBounce {
   0%, 100% { transform: scale3d(1.15, 0.85, 1.15); }
-  13% { transform: scale3d(0.9, 1.05, 0.9); }
+  20% { transform: scale3d(0.9, 1.05, 0.9); }
   25% { transform: scale3d(1, 1, 1); }
   30% { transform: scale3d(0.98, 1.01, 0.98); }
   95% { transform: scale3d(1, 1, 1); }
